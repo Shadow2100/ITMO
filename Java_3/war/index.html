@@ -1,0 +1,31 @@
+<html>
+<head>
+<title> </title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+ 
+<script src="jquery-2.1.0.min.js"></script>
+<script>
+  $( function() {
+	  var my_some_parameter = 1;
+	  $('#answer_random').load( "/java_3?my_some_parameter="+my_some_parameter);
+	    $('#ex_1_submit').click( function() {
+	    	var my_some_parameter = 2;
+	    	var ex_1_integer_m = $('#ex_1_integer_m').val();
+	    	var ex_1_integer_n = $('#ex_1_integer_n').val();
+	    	
+	      $('#ex_1_answer').load( "/java_3?my_some_parameter="+my_some_parameter+"&ex_1_integer_m="+ex_1_integer_m+"&ex_1_integer_n="+ex_1_integer_n);
+	    } );
+  } );
+</script>
+<body>
+<span style="color:red" id="answer_random"></span> 
+<form>
+<p> Введите 2 числа</p>
+<p> Число m : <input type="number" name="ex_1_integer_m"></p>
+<p> Число n :  <input type="number" name="ex_1_integer_n"></p>
+<input type="submit" name="ex_1_submit" value="Submit">
+<span style="color:red" id="ex_1_answer"></span>
+</form>
+</body>
+</html>
