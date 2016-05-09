@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.NoSuchElementException;
+
 import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
@@ -19,32 +20,27 @@ public class Java_3Servlet extends HttpServlet {
 			case_1(resp);
 			break;
 		case "2":
-		case_2(req,resp);
-		break;
+			case_2(req, resp);
+			break;
 		case "3":
-			case_3(req,resp);
+			case_3(req, resp);
 			break;
 		case "4":
-			case_4(req,resp);
+			case_4(req, resp);
 			break;
 		}
-/*
-		Enumeration mytests = req.getParameterNames();
-		String[] test = { "" };
-		List<String> zoom = new ArrayList<>();
-		try {
-			while (mytests.hasMoreElements()) {
-				zoom.add(mytests.nextElement().toString());
-			}
-		} catch (NoSuchElementException n) {
-
-		}
-		resp.getWriter().println(" содержимое " + mytests.toString());
-
-		for (String z1 : zoom) {
-			resp.getWriter().println(" /n Элемент mytests " + z1);
-		}
-		*/
+		/*
+		 * Enumeration mytests = req.getParameterNames(); String[] test = { ""
+		 * }; List<String> zoom = new ArrayList<>(); try { while
+		 * (mytests.hasMoreElements()) {
+		 * zoom.add(mytests.nextElement().toString()); } } catch
+		 * (NoSuchElementException n) {
+		 * 
+		 * } resp.getWriter().println(" содержимое " + mytests.toString());
+		 * 
+		 * for (String z1 : zoom) {
+		 * resp.getWriter().println(" /n Элемент mytests " + z1); }
+		 */
 	}
 
 	void case_1(HttpServletResponse resp) throws IOException {
@@ -148,48 +144,68 @@ public class Java_3Servlet extends HttpServlet {
 		int random = (int) (dd * 100);
 		resp.getWriter().println(random);
 	}
-	
-void case_2(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException{
-	double int_m = Double.parseDouble(req.getParameter("ex_1_integer_m"));
-	double int_n = Double.parseDouble(req.getParameter("ex_1_integer_n"));
-	if (abs(int_m-10)<abs(int_n-10)){
-		resp.getWriter().println(" Число "+int_m+" ближе к 10 чем "+int_n);
+
+	void case_2(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		double int_m = Double.parseDouble(req.getParameter("ex_1_integer_m"));
+		double int_n = Double.parseDouble(req.getParameter("ex_1_integer_n"));
+		if (abs(int_m - 10) < abs(int_n - 10)) {
+			resp.getWriter().println(
+					" Число " + int_m + " ближе к 10 чем " + int_n);
+		} else {
+			resp.getWriter().println(
+					" Число " + int_n + " ближе к 10 чем " + int_m);
+		}
 	}
-	else{
-		resp.getWriter().println(" Число "+int_n+" ближе к 10 чем "+int_m);
+
+	void case_3(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		int i;
+		int j;
+		int r;
+		resp.getWriter().println("<table border=\"1\">");
+		for (i = 0; i < 8; i++) {
+			resp.getWriter().println("<tr>");
+			for (j = 0; j < 5; j++) {
+				r = (int) (Math.random() * 100);
+				if (r < 10) {
+					r = 10;
+				}
+				resp.getWriter().println("<td>" + r + "</td>");
+			}
+			resp.getWriter().println("</tr>");
+		}
+		resp.getWriter().println("</table>");
 	}
-}
 
-void case_3(HttpServletRequest req, HttpServletResponse resp)
-		throws IOException{
-int i;
-resp.getWriter().println("");
-for(i=0;i<8*5;i++)
-{
-	
-}
-
-}
-
-void case_4(HttpServletRequest req, HttpServletResponse resp)
-		throws IOException{
-int i;
-resp.getWriter().println("");
-for(i=0;i<8*5;i++)
-{
-	
-}
-
-}
-
-private double abs(double d) {
-	// TODO Auto-generated method stub
-	if(d<0){
-		return d*(-1);
+	void case_4(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		int i;
+		int j;
+		int r;
+		resp.getWriter().println("<table border=\"1\">");
+		for (i = 0; i < 8; i++) {
+			resp.getWriter().println("<tr>");
+			for (j = 0; j < 5; j++) {
+				r = (int) (Math.random() * 10);
+				if (r < 5) {
+					r = -(int) (Math.random() * 100);
+				} else {
+					r = (int) (Math.random() * 100);
+				}
+				resp.getWriter().println("<td>" + r + "</td>");
+			}
+			resp.getWriter().println("</tr>");
+		}
+		resp.getWriter().println("</table>");
 	}
-	else{
-		return d;
+
+	private double abs(double d) {
+		// TODO Auto-generated method stub
+		if (d < 0) {
+			return d * (-1);
+		} else {
+			return d;
+		}
 	}
-}
 }

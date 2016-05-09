@@ -1,44 +1,72 @@
 <html>
 <head>
-<title> </title>
+<title></title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
- 
+
 <script src="jquery-2.1.0.min.js"></script>
 <script>
-  $( function() {
-	  var my_some_parameter = 1;
-	  $('#answer_random').load( "/java_3?my_some_parameter="+my_some_parameter);
-	    $('#ex_1_submit').click( function() {
-	    	var my_some_parameter = 2;
-	    	var ex_1_integer_m = $('#ex_1_integer_m').val();
-	    	var ex_1_integer_n = $('#ex_1_integer_n').val();
-	    	
-	      $('#ex_1_answer').load( "/java_3?my_some_parameter="+my_some_parameter+"&ex_1_integer_m="+ex_1_integer_m+"&ex_1_integer_n="+ex_1_integer_n);
-	    } );
-	    $('#ex_2_submit').click( function() {
-	    	var my_some_parameter = 3;
-	    	var ex_2_integer_a = $('#ex_2_integer_a').val();
-	    	var ex_2_integer_b = $('#ex_2_integer_b').val();
-	    	var ex_2_integer_c = $('#ex_2_integer_c').val();
-	      $('#ex_2_answer').load( "/java_3?my_some_parameter="+my_some_parameter+"&ex_2_integer_a="+ex_2_integer_a+"&ex_2_integer_b="+ex_2_integer_b+"&ex_2_integer_c="+ex_2_integer_c);
-	    } );
-  } );
+	$(function() {
+		var my_some_parameter = 1;
+		$('#answer_random').load(
+				"/java_3?my_some_parameter=" + my_some_parameter);
+		$('#ex_1_submit').click(
+				function() {
+					var my_some_parameter = 2;
+					var ex_1_integer_m = $('#ex_1_integer_m').val();
+					var ex_1_integer_n = $('#ex_1_integer_n').val();
+
+					$('#ex_1_answer').load(
+							"/java_3?my_some_parameter=" + my_some_parameter
+									+ "&ex_1_integer_m=" + ex_1_integer_m
+									+ "&ex_1_integer_n=" + ex_1_integer_n);
+				});
+		$('#ex_2_submit').click(
+				function() {
+					var my_some_parameter = 3;
+					var ex_2_integer_a = $('#ex_2_integer_a').val();
+					var ex_2_integer_b = $('#ex_2_integer_b').val();
+					var ex_2_integer_c = $('#ex_2_integer_c').val();
+					$('#ex_2_answer').load(
+							"/java_3?my_some_parameter=" + my_some_parameter
+									+ "&ex_2_integer_a=" + ex_2_integer_a
+									+ "&ex_2_integer_b=" + ex_2_integer_b
+									+ "&ex_2_integer_c=" + ex_2_integer_c);
+				});
+		my_some_parameter = 3;
+		$('#ex_3_answer')
+				.load("/java_3?my_some_parameter=" + my_some_parameter);
+		my_some_parameter = 4;
+		$('#ex_4_answer')
+				.load("/java_3?my_some_parameter=" + my_some_parameter);
+	});
 </script>
 <body>
-<span style="color:red" id="answer_random"></span> 
-<form>
-<p> Введите 2 числа</p>
-<p> Число m : <input type="number" id="ex_1_integer_m"></p>
-<p> Число n :  <input type="number" id="ex_1_integer_n"></p>
-</form>
-<button id="ex_1_submit">Посчитать</button>
-<span style="color:red" id="ex_1_answer"></span>
-<form>
-<p>Введите 3 целых числа для расчета корнец уравнения ax²+bx+c=0</p>
-<p> Число a : <input type="number" id="ex_2_integer_a">  Число b : <input type="number" id="ex_2_integer_b">  Число c : <input type="number" id="ex_2_integer_c"></p>
-</form>
-<button id="ex_2_submit">Посчитать</button>
-<span style="color:red" id="ex_2_answer"></span>
+	<span style="color: red" id="answer_random"></span>
+	<form>
+		<p>Введите 2 числа</p>
+		<p>
+			Число m : <input type="number" id="ex_1_integer_m">
+		</p>
+		<p>
+			Число n : <input type="number" id="ex_1_integer_n">
+		</p>
+	</form>
+	<button id="ex_1_submit">Узнай какое из них ближе к 10</button>
+	<span style="color: red" id="ex_1_answer"></span>
+	<form>
+		<p>Введите 3 целых числа для расчета корнец уравнения ax²+bx+c=0</p>
+		<p>
+			Число a : <input type="number" id="ex_2_integer_a"> Число b :
+			<input type="number" id="ex_2_integer_b"> Число c : <input
+				type="number" id="ex_2_integer_c">
+		</p>
+	</form>
+	<button id="ex_2_submit">Посчитать</button>
+	<span style="color: red" id="ex_2_answer"></span>
+	<p>Двумерный массив из 8 строк по 5 столбцов в каждой из случайных целых чисел из отрезка [10;99]. </p>
+	<span style="color: red" id="ex_3_answer"></span>
+	<p>Двумерный массив из 5 строк по 8 столбцов в каждой из случайных целых чисел из отрезка [-99;99]. </p>
+	<span style="color: red" id="ex_4_answer"></span>
 </body>
 </html>
