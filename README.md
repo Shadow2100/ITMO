@@ -1,2 +1,1 @@
-# Vlassov_exercise1
-qwewqewq
+# Vlassov_exercise
