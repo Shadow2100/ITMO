@@ -16,16 +16,29 @@
 	    	
 	      $('#ex_1_answer').load( "/java_3?my_some_parameter="+my_some_parameter+"&ex_1_integer_m="+ex_1_integer_m+"&ex_1_integer_n="+ex_1_integer_n);
 	    } );
+	    $('#ex_2_submit').click( function() {
+	    	var my_some_parameter = 3;
+	    	var ex_2_integer_a = $('#ex_2_integer_a').val();
+	    	var ex_2_integer_b = $('#ex_2_integer_b').val();
+	    	var ex_2_integer_c = $('#ex_2_integer_c').val();
+	      $('#ex_2_answer').load( "/java_3?my_some_parameter="+my_some_parameter+"&ex_2_integer_a="+ex_2_integer_a+"&ex_2_integer_b="+ex_2_integer_b+"&ex_2_integer_c="+ex_2_integer_c);
+	    } );
   } );
 </script>
 <body>
 <span style="color:red" id="answer_random"></span> 
 <form>
 <p> Введите 2 числа</p>
-<p> Число m : <input type="number" name="ex_1_integer_m"></p>
-<p> Число n :  <input type="number" name="ex_1_integer_n"></p>
-<input type="submit" name="ex_1_submit" value="Submit">
-<span style="color:red" id="ex_1_answer"></span>
+<p> Число m : <input type="number" id="ex_1_integer_m"></p>
+<p> Число n :  <input type="number" id="ex_1_integer_n"></p>
 </form>
+<button id="ex_1_submit">Посчитать</button>
+<span style="color:red" id="ex_1_answer"></span>
+<form>
+<p>Введите 3 целых числа для расчета корнец уравнения ax²+bx+c=0</p>
+<p> Число a : <input type="number" id="ex_2_integer_a">  Число b : <input type="number" id="ex_2_integer_b">  Число c : <input type="number" id="ex_2_integer_c"></p>
+</form>
+<button id="ex_2_submit">Посчитать</button>
+<span style="color:red" id="ex_2_answer"></span>
 </body>
 </html>
