@@ -8,7 +8,7 @@ public abstract class Transport {
 		this.speed=0;
 	}
 	public boolean driverStatus(){
-		return driver
+		return driver.driverStatus();
 	}
 
 }
