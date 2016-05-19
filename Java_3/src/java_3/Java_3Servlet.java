@@ -147,14 +147,22 @@ public class Java_3Servlet extends HttpServlet {
 
 	void case_2(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		double int_m = Double.parseDouble(req.getParameter("ex_1_integer_m"));
-		double int_n = Double.parseDouble(req.getParameter("ex_1_integer_n"));
-		if (abs(int_m - 10) < abs(int_n - 10)) {
-			resp.getWriter().println(
-					" Число " + int_m + " ближе к 10 чем " + int_n);
-		} else {
-			resp.getWriter().println(
-					" Число " + int_n + " ближе к 10 чем " + int_m);
+		try {
+			double int_m = Double.parseDouble(req
+					.getParameter("ex_1_integer_m"));
+			double int_n = Double.parseDouble(req
+					.getParameter("ex_1_integer_n"));
+
+			if (abs(int_m - 10) < abs(int_n - 10)) {
+
+				resp.getWriter().println(
+						" Число " + int_m + " ближе к 10 чем " + int_n);
+			} else {
+				resp.getWriter().println(
+						" Число " + int_n + " ближе к 10 чем " + int_m);
+			}
+		} catch (NumberFormatException n) {
+			resp.getWriter().println("В полях m и n должны быть числа");
 		}
 	}
 
@@ -183,37 +191,38 @@ public class Java_3Servlet extends HttpServlet {
 		int i;
 		int j;
 		int r;
-		int max=0;
-		int[] arrayInt= new int[8*5]; 
-		for (j = 0; j < 8*5; j++) {
+		int max = 0;
+		int[] arrayInt = new int[8 * 5];
+		for (j = 0; j < 8 * 5; j++) {
 			r = (int) (Math.random() * 10);
 			if (r < 5) {
 				r = -(int) (Math.random() * 100);
 			} else {
 				r = (int) (Math.random() * 100);
 			}
-			if (j==0){
-				max=r;
-			}
-			else{
-				if(r>max){
-					max=r;
+			if (j == 0) {
+				max = r;
+			} else {
+				if (r > max) {
+					max = r;
 				}
 			}
-			arrayInt[j]=r;
+			arrayInt[j] = r;
 		}
-		
+
 		resp.getWriter().println("<table border=\"1\">");
 		for (i = 0; i < 8; i++) {
 			resp.getWriter().println("<tr>");
 			for (j = 0; j < 5; j++) {
-				
-				resp.getWriter().println("<td>" + arrayInt[i*5+j] + "</td>");
+
+				resp.getWriter()
+						.println("<td>" + arrayInt[i * 5 + j] + "</td>");
 			}
 			resp.getWriter().println("</tr>");
 		}
 		resp.getWriter().println("</table>");
-		resp.getWriter().println("<p>Максимальное значение в массиве "+max+" </p>");
+		resp.getWriter().println(
+				"<p>Максимальное значение в массиве " + max + " </p>");
 	}
 
 	private double abs(double d) {
