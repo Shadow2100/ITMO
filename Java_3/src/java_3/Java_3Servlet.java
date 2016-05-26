@@ -19,6 +19,9 @@ public class Java_3Servlet extends HttpServlet {
 		case "1":
 			case_1(resp);
 			break;
+		case "5":
+			case_5(req, resp);
+			break;
 		case "2":
 			case_2(req, resp);
 			break;
@@ -223,6 +226,35 @@ public class Java_3Servlet extends HttpServlet {
 		resp.getWriter().println("</table>");
 		resp.getWriter().println(
 				"<p>ћаксимальное значение в массиве " + max + " </p>");
+	}
+	void case_5(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		try {
+			double int_a = Double.parseDouble(req
+					.getParameter("ex_2_integer_a"));
+			double int_b = Double.parseDouble(req
+					.getParameter("ex_2_integer_b"));
+			double int_c = Double.parseDouble(req
+					.getParameter("ex_2_integer_c"));
+			double d=Math.pow(int_b, 2)-4*int_a*int_c;
+			double x1;
+			double x2;
+			if (d>0){
+				d=Math.sqrt(d);
+				x1=-(int_b+d)/(2*int_a);
+				x2=-(int_b-d)/(2*int_a);
+				resp.getWriter().println("<p>X1="+x1+"</p><p>X2="+x2+"</p>");
+			}
+			else if(d==0){
+				x1=-(int_b)/(2*int_a);
+				resp.getWriter().println("<p>”равнение имеет только 1 корень, так как дискриминант равен 0</p>"+"<p>X="+x1+"</p>");
+			}
+			else if(d<0){
+				resp.getWriter().println("<p>”равнение не имеет корней, так как дискриминант меньше 0</p>");
+			}
+		} catch (NumberFormatException n) {
+			resp.getWriter().println("<p>¬ пол€х a, b и c должны быть числа</p>");
+		}
 	}
 
 	private double abs(double d) {
