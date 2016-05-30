@@ -25,12 +25,14 @@ public class Java_5 {
 		// TODO Auto-generated method stub
 		InputStream in = new FileInputStream("/WiFi.xls");
 		HSSFWorkbook wb = new HSSFWorkbook(in);
-		List<String> rows = new ArrayList<String>();
-		String result;
+		List<ArrayList> rows = new ArrayList<ArrayList>();
+		List<String> row1 = new ArrayList<String>();
 		Sheet sheet = wb.getSheetAt(0);
 		Iterator<Row> it = sheet.iterator();
+		String str="";
 		while (it.hasNext()) {
-			result="";
+			str+=Double.toString(53.365);
+			row1.clear();
 			Row row = it.next();
 			Iterator<Cell> cells = row.iterator();
 			while (cells.hasNext()) {
@@ -38,21 +40,21 @@ public class Java_5 {
 				int cellType = cell.getCellType();
 				switch (cellType) {
 				case Cell.CELL_TYPE_STRING:
-					System.out.print(cell.getStringCellValue() + "=");
+					row1.add(cell.getStringCellValue());
 					break;
 				case Cell.CELL_TYPE_NUMERIC:
-					System.out.print("[" + cell.getNumericCellValue() + "]");
+					row1.add(Double.toString(cell.getNumericCellValue()));
 					break;
 
 				case Cell.CELL_TYPE_FORMULA:
-					System.out.print("[" + cell.getNumericCellValue() + "]");
+					row1.add(Double.toString(cell.getNumericCellValue()));
 					break;
 				default:
-					System.out.print("|");
 					break;
 				}
+				
 			}
-			System.out.println();
+			rows.add((ArrayList) row1);
 		}
 		CSVWriter writer;
 		writer = new CSVWriter(new BufferedWriter(new
