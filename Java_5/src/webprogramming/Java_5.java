@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.Iterator;
+import java.util.List;
+
 import org.apache.poi.hssf.extractor.ExcelExtractor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvBind;
@@ -22,10 +25,12 @@ public class Java_5 {
 		// TODO Auto-generated method stub
 		InputStream in = new FileInputStream("/WiFi.xls");
 		HSSFWorkbook wb = new HSSFWorkbook(in);
-
+		List<String> rows = new ArrayList<String>();
+		String result;
 		Sheet sheet = wb.getSheetAt(0);
 		Iterator<Row> it = sheet.iterator();
 		while (it.hasNext()) {
+			result="";
 			Row row = it.next();
 			Iterator<Cell> cells = row.iterator();
 			while (cells.hasNext()) {
@@ -52,7 +57,7 @@ public class Java_5 {
 		CSVWriter writer;
 		writer = new CSVWriter(new BufferedWriter(new
 				OutputStreamWriter(
-				new FileOutputStream("result.csv"), "UTF-8")));
+				new FileOutputStream("/result.csv"), "UTF-8")));
 				String[] row1 = {};
 				writer.writeNext(row1);
 				String[] row2 = {};
