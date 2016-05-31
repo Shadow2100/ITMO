@@ -21,7 +21,6 @@ import java.util.Arrays;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvBind;
 
-@SuppressWarnings("unused")
 public class Java_5 {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -31,7 +30,6 @@ public class Java_5 {
 		ArrayList<String> row1 = new ArrayList<String>();
 		Sheet sheet = wb.getSheetAt(0);
 		Iterator<Row> it = sheet.iterator();
-		String str="";
 		String[] tempRow;
 		while (it.hasNext()) {
 			row1.clear();
@@ -59,9 +57,7 @@ public class Java_5 {
 			rows.add(row1.toArray(new String[0]));
 		}
 		CSVWriter writer;
-		writer = new CSVWriter(new BufferedWriter(new
-				OutputStreamWriter(
-				new FileOutputStream("./result.csv"), "UTF-8")));
+		writer = new CSVWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("./result.csv"), "UTF-8")));
 		Iterator<String[]> itStringArray=rows.iterator();
 		while(itStringArray.hasNext()){
 			tempRow=itStringArray.next();
