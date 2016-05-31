@@ -13,6 +13,8 @@ import java.util.List;
 import org.apache.poi.hssf.extractor.ExcelExtractor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +25,15 @@ import com.opencsv.bean.CsvBind;
 public class Java_5 {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		InputStream in = new FileInputStream("/WiFi.xls");
-		HSSFWorkbook wb = new HSSFWorkbook(in);
-		List<ArrayList> rows = new ArrayList<ArrayList>();
-		List<String> row1 = new ArrayList<String>();
+		InputStream in = new FileInputStream("./eco.xlsx");
+		XSSFWorkbook wb = new XSSFWorkbook(in);
+		ArrayList<String[]> rows = new ArrayList<String[]>();
+		ArrayList<String> row1 = new ArrayList<String>();
 		Sheet sheet = wb.getSheetAt(0);
 		Iterator<Row> it = sheet.iterator();
 		String str="";
+		String[] tempRow;
 		while (it.hasNext()) {
-			str+=Double.toString(53.365);
 			row1.clear();
 			Row row = it.next();
 			Iterator<Cell> cells = row.iterator();
@@ -54,16 +56,17 @@ public class Java_5 {
 				}
 				
 			}
-			rows.add((ArrayList) row1);
+			rows.add(row1.toArray(new String[0]));
 		}
 		CSVWriter writer;
 		writer = new CSVWriter(new BufferedWriter(new
 				OutputStreamWriter(
-				new FileOutputStream("/result.csv"), "UTF-8")));
-				String[] row1 = {};
-				writer.writeNext(row1);
-				String[] row2 = {};
-				writer.writeNext(row2);
+				new FileOutputStream("./result.csv"), "UTF-8")));
+		Iterator<String[]> itStringArray=rows.iterator();
+		while(itStringArray.hasNext()){
+			tempRow=itStringArray.next();
+			writer.writeNext(tempRow);
+		}
 				writer.close();
 	}
 
