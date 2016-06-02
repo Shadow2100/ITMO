@@ -23,4 +23,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Exercise2</servlet-name>
 		<url-pattern>/javaexercise2</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Exercise3</servlet-name>
+		<servlet-class>webtechnologies.javaexecise3.Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Exercise3</servlet-name>
+		<url-pattern>/javaexercise3</url-pattern>
+	</servlet-mapping>
 </web-app>
