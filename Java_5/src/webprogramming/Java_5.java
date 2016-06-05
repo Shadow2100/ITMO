@@ -56,6 +56,7 @@ public class Java_5 {
 			}
 			rows.add(row1.toArray(new String[0]));
 		}
+		wb.close();
 		CSVWriter writer;
 		writer = new CSVWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("./result.csv"), "UTF-8")));
 		Iterator<String[]> itStringArray=rows.iterator();
