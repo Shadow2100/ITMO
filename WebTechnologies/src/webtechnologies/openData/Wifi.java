@@ -6,7 +6,7 @@ protected String name;
 protected String address;
 protected String place;
 protected String nameOfWifi;
-protected String area;
+protected int radius;
 protected String status;
 protected Double longitude;
 protected Double latitude;
@@ -41,11 +41,11 @@ public String getNameOfWifi() {
 public void setNameOfWifi(String nameOfWifi) {
 	this.nameOfWifi = nameOfWifi;
 }
-public String getArea() {
-	return area;
+public int getRadius() {
+	return radius;
 }
-public void setArea(String area) {
-	this.area = area;
+public void setRadius(int area) {
+	this.radius = area;
 }
 public String getStatus() {
 	return status;

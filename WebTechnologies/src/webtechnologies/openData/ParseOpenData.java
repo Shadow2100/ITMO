@@ -1,8 +1,8 @@
 package webtechnologies.openData;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.*;
@@ -10,65 +10,83 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public abstract class ParseOpenData {
 	public static Wifi[] Parse() throws IOException {
-		InputStream in = new FileInputStream("/wifi.xlsx");
-		XSSFWorkbook wb = new XSSFWorkbook(in);
+		InputStream input = new URL("http://localhost:8888/wifi.xlsx").openStream();
+		XSSFWorkbook wb = new XSSFWorkbook(input);
 		Sheet sheet = wb.getSheetAt(0);
-		List<Wifi> listOfWifi = new ArrayList<Wifi>();
-		for (Row row : sheet) {
+		List<Wifi> wifiArray = new ArrayList<Wifi>();
+		int i;
+		for (i=1;i<sheet.getLastRowNum()+1;i++) {
 			Wifi tempEntry = new Wifi();
-			switch (row.getCell(0).getCellType()) {
+			switch (sheet.getRow(i).getCell(0).getCellType()) {
 			case Cell.CELL_TYPE_STRING:
-				tempEntry.setIndex(Integer.parseInt(row.getCell(0).getStringCellValue()));
+				tempEntry.setIndex(Integer.parseInt(sheet.getRow(i).getCell(0).getStringCellValue()));
 				break;
 			case Cell.CELL_TYPE_NUMERIC:
-				tempEntry.setIndex((int) row.getCell(0).getNumericCellValue());
+				tempEntry.setIndex((int) sheet.getRow(i).getCell(0).getNumericCellValue());
 				break;
 
 			case Cell.CELL_TYPE_FORMULA:
-				tempEntry.setIndex((int) row.getCell(0).getNumericCellValue());
+				tempEntry.setIndex((int) sheet.getRow(i).getCell(0).getNumericCellValue());
 				break;
 			default:
 				break;
 			}
-			tempEntry.setName(row.getCell(1).getStringCellValue());
-			tempEntry.setAddress(row.getCell(2).getStringCellValue());
-			tempEntry.setPlace(row.getCell(3).getStringCellValue());
-			tempEntry.setNameOfWifi(row.getCell(4).getStringCellValue());
-			tempEntry.setArea(row.getCell(5).getStringCellValue());
-			tempEntry.setStatus(row.getCell(6).getStringCellValue());
-			switch (row.getCell(7).getCellType()) {
+			tempEntry.setName(sheet.getRow(i).getCell(1).getStringCellValue());
+			tempEntry.setAddress(sheet.getRow(i).getCell(2).getStringCellValue());
+			tempEntry.setPlace(sheet.getRow(i).getCell(3).getStringCellValue());
+			tempEntry.setNameOfWifi(sheet.getRow(i).getCell(4).getStringCellValue());
+			switch (sheet.getRow(i).getCell(5).getCellType()) {
 			case Cell.CELL_TYPE_STRING:
-				tempEntry.setLongitude(Double.parseDouble((row.getCell(7).getStringCellValue())));
+				tempEntry.setRadius(Integer.parseInt((sheet.getRow(i).getCell(5).getStringCellValue())));
 				break;
 			case Cell.CELL_TYPE_NUMERIC:
-				tempEntry.setLongitude(row.getCell(7).getNumericCellValue());
+				tempEntry.setRadius((int) sheet.getRow(i).getCell(5).getNumericCellValue());
 				break;
 
 			case Cell.CELL_TYPE_FORMULA:
-				tempEntry.setLongitude(row.getCell(7).getNumericCellValue());
+				tempEntry.setRadius((int) sheet.getRow(i).getCell(5).getNumericCellValue());
 				break;
 			default:
 				break;
 			}
-			switch (row.getCell(8).getCellType()) {
+			tempEntry.setStatus(sheet.getRow(i).getCell(6).getStringCellValue());
+
+			switch (sheet.getRow(i).getCell(7).getCellType()) {
 			case Cell.CELL_TYPE_STRING:
-				tempEntry.setLatitude(Double.parseDouble((row.getCell(8).getStringCellValue())));
+				tempEntry.setLatitude(Double.parseDouble((sheet.getRow(i).getCell(7).getStringCellValue())));
 				break;
 			case Cell.CELL_TYPE_NUMERIC:
-				tempEntry.setLatitude(row.getCell(8).getNumericCellValue());
+				tempEntry.setLatitude(sheet.getRow(i).getCell(7).getNumericCellValue());
 				break;
 
 			case Cell.CELL_TYPE_FORMULA:
-				tempEntry.setLatitude(row.getCell(8).getNumericCellValue());
+				tempEntry.setLatitude(sheet.getRow(i).getCell(7).getNumericCellValue());
 				break;
 			default:
 				break;
 			}
-			tempEntry.setNote(row.getCell(9).getStringCellValue());
+			switch (sheet.getRow(i).getCell(8).getCellType()) {
+			case Cell.CELL_TYPE_STRING:
+				tempEntry.setLongitude(Double.parseDouble((sheet.getRow(i).getCell(8).getStringCellValue())));
+				break;
+			case Cell.CELL_TYPE_NUMERIC:
+				tempEntry.setLongitude(sheet.getRow(i).getCell(8).getNumericCellValue());
+				break;
+
+			case Cell.CELL_TYPE_FORMULA:
+				tempEntry.setLongitude(sheet.getRow(i).getCell(8).getNumericCellValue());
+				break;
+			default:
+				break;
+			}
+			tempEntry.setNote(sheet.getRow(i).getCell(9).getStringCellValue());
+			wifiArray.add(tempEntry);
 
 		}
+		
 		wb.close();
-		return (Wifi[]) listOfWifi.toArray();
+		input.close();
+		return wifiArray.toArray(new Wifi[wifiArray.size()]);
 		
 	}
 }

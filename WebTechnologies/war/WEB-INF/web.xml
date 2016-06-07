@@ -39,4 +39,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>FormException</servlet-name>
 		<url-pattern>/formexception</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>FindNearestWIFI</servlet-name>
+		<servlet-class>webtechnologies.openData.FindNearestWIFI</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindNearestWIFI</servlet-name>
+		<url-pattern>/findnearestwifi</url-pattern>
+	</servlet-mapping>
 </web-app>
