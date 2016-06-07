@@ -1,1 +1,3 @@
-# Vlassov_exercise
+# ITMO
+
+Москалев В.Б. группа P3355
