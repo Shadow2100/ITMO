@@ -31,4 +31,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>JavaTask3</servlet-name>
 		<url-pattern>/javatask3</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>FormException</servlet-name>
+		<servlet-class>webtechnologies.FormException</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FormException</servlet-name>
+		<url-pattern>/formexception</url-pattern>
+	</servlet-mapping>
 </web-app>
